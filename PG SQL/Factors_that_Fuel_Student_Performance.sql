@@ -2,6 +2,11 @@
 SELECT * FROM public.student_performance
 LIMIT 5;
 
+/*Do more study hours and extracurricular activities lead to better scores? 
+Analyze how studying more than 10 hours per week, while also participating in extracurricular activities, impacts exam performance. 
+The output should include two columns: 1) hours_studied and 2) avg_exam_score. 
+Group and sort the results by hours_studied in descending order. 
+Save the query as avg_exam_score_by_study_and_extracurricular.*/
 -- avg_exam_score_by_study_and_extracurricular
 -- Edit the query below as needed
 SELECT hours_studied, AVG(exam_score) AS avg_exam_score
@@ -10,6 +15,12 @@ WHERE hours_studied > 10 AND extracurricular_activities = 'Yes'
 GROUP BY hours_studied
 ORDER BY avg_exam_score DESC; 
 
+/*Is there a sweet spot for study hours? 
+Explore how different ranges of study hours impact exam performance by calculating the average exam score for each study range. 
+Categorize students into four groups based on hours studied per week: 1-5 hours, 6-10 hours, 11-15 hours, and 16+ hours. 
+The output should contain two columns: 1) hours_studied_range and 2) avg_exam_score. 
+Group the results by hours_studied_range and sort them by avg_exam_score in descending order. 
+Save the query as avg_exam_score_by_hours_studied_range.*/
 -- avg_exam_score_by_hours_studied_range
 -- Add solution code below 
 SELECT
@@ -23,6 +34,12 @@ GROUP BY hours_studied_range
 ORDER BY avg_exam_score DESC;
 
 
+
+/*A teacher wants to show their students their relative rank in the class, without revealing their exam scores to each other. 
+Use a window function to assign ranks based on exam_score, ensuring that students with the same exam score share the same rank and no ranks are skipped. 
+Return the columns attendance, hours_studied, sleep_hours, tutoring_sessions, and exam_rank. 
+The students with the highest exam score should be at the top of the results, so order your query by exam_rank in ascending order. 
+Limit your query to 30 students.*/
 -- student_exam_ranking
 -- Add solution code below 
 SELECT attendance, 
@@ -33,3 +50,4 @@ SELECT attendance,
 FROM public.student_performance
 ORDER BY exam_rank ASC
 LIMIT 30;
+
